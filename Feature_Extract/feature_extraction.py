@@ -107,8 +107,6 @@ def get_bigrams(protein, seq, site_str):
         X.append(combined)
         Y.append(int(site_str))
 
-        return [X, Y]
-
     return [X, Y]
 
 
