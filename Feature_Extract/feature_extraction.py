@@ -1,9 +1,20 @@
 from os import listdir
 from os.path import isfile, join
+from tqdm import tqdm
 import numpy as np
+import sys
+from config import human, mice
 
-PSSM_folder = '../data/Malonylation/Human/PSSM/'
-SPD3_folder = '../data/Malonylation/Human/SPD3/'
+
+if len(sys.argv) <= 1:
+    print('Please Specify human or mice')
+    exit(1)
+
+config = human if sys.argv[1] == 'human' else mice
+
+PSSM_folder = config['PSSM_folder']
+SPD3_folder = config['SPD3_folder']
+
 WINDOW_SIZE = 20
 STRUCTURAL_WINDOW_SIZE = 3
 LOWEST_VAL = 20
@@ -92,7 +103,6 @@ def get_bigrams(protein, seq, site_str):
         ind += 1
 
         combined = np.concatenate((PSSM_bigram, SPpre))
-        print(combined.shape)
 
         X.append(combined)
         Y.append(int(site_str))
@@ -102,7 +112,7 @@ def get_bigrams(protein, seq, site_str):
     return [X, Y]
 
 
-def main(encoded_file, data_folder, ext):
+def main(encoded_file, data_folder, ext, output):
     global data
 
     encoded_to_mapping(encoded_file)
@@ -112,7 +122,7 @@ def main(encoded_file, data_folder, ext):
     Y_p = []
     X_n = []
     Y_n = []
-    for protein in proteins:
+    for protein in tqdm(proteins):
         mathematical_seq = data[protein].strip()
 
         # For all Positive Sites
@@ -125,8 +135,7 @@ def main(encoded_file, data_folder, ext):
         X_n += c
         Y_n += d
 
-    np.savez('../data/features_human.npz', X_p, Y_p, X_n, Y_n)
+    np.savez('../data/{}.npz'.format(output), X_p, Y_p, X_n, Y_n)
 
 
-main('../data/Malonylation/Human/HM_encoded.csv', '../data/Malonylation/Human/HSA+SPD3/', 'hsb2')
-# main('../data/Malonylation/Mice/MM_encoded.csv', '../data/Malonylation/Mice/HSA+SPD3/', 'hsb2')
+main(config['encoded_file'], config['data_folder'], 'hsb2', config['output'])
