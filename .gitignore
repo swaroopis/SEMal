@@ -130,6 +130,8 @@ dmypy.json
 
 
 # Manually added
-data/
+data
 .idea
 .idea/
+*/Icon
+Web_Server/BE/NR
