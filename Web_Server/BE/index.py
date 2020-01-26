@@ -13,6 +13,11 @@ app = Flask(__name__)
 CORS(app)
 
 
+@app.route('/', methods=['GET'])
+def hello():
+    return "Hello World"
+
+
 @app.route('/get_malonylation', methods=['GET', 'POST'])
 def get_mal():
     data = request.get_json()
@@ -23,4 +28,4 @@ def get_mal():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0')
