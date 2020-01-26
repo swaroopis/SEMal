@@ -32,7 +32,7 @@ export default class App extends Component {
   submit = async () => {
     this.setState({ loading: true, protein: '', res: '' });
     const { species, pssm, spd3 } = this.state;
-    const { data } = await axios.post('http://localhost:5000/get_malonylation', {
+    const { data } = await axios.post('http://13.58.188.133:5000/get_malonylation', {
       pssm,
       spd3,
       species,
