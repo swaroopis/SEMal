@@ -22,21 +22,5 @@ def get_mal():
     return res
 
 
-@app.route('/get_pssm', methods=['POST'])
-def get_pssm():
-    data = request.get_json()
-    pssm = data["pssm"].split('\n')
-    if len(pssm) <= 1:
-        return 'bad format'
-    with open('./pssm.seq', 'w') as f:
-        f.write(data["pssm"])
-    cmd = "./{} -query ./pssm.seq -db /Users/dipta007/my-world/gdrive/Thesis/MSCSE/PTM/code/EvolMal/Web_Server/BE/NR/nr -out pssm.out -num_iterations 3 -out_ascii_pssm pssm.pssm -inclusion_ethresh 0.001 -num_threads 4".format(psiblast)
-    MyOut = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-    stdout, stderr = MyOut.communicate()
-    print(stdout)
-    print(stderr)
-    return 'ok'
-
-
 if __name__ == '__main__':
     app.run(debug=True)
