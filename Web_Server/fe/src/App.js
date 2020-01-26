@@ -67,7 +67,7 @@ export default class App extends Component {
       >
         <div className="container">
           <div className="title">
-            Mal-Light: Enhancing Lysine Malonylation Sites Prediction Problem Relying Solely on Evolutionary-based Features.
+            SEMal: Predict Malonylation Sites from a protein sequence using structural and evolutionary information
           </div>
           <hr />
           <div className="body">
@@ -119,11 +119,15 @@ export default class App extends Component {
               Submit
             </Button>
 
-            <div className="result-container" dangerouslySetInnerHTML={{ __html: result }} />
-            <div>
-              <h4>Malonylation Site Indexes (0-based indexing)</h4>
-              <p>{indices}</p>
-            </div>
+            {!!protein.length && (
+              <>
+                <div className="result-container" dangerouslySetInnerHTML={{ __html: result }} />
+                <div>
+                  <h4>Malonylation Site Indexes (0-based indexing)</h4>
+                  <p>{indices}</p>
+                </div>
+              </>
+            )}
 
           </div>
         </div>
