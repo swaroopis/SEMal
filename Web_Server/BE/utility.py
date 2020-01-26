@@ -14,14 +14,8 @@ def get_bigrams_utility(protein, pssm, spd3):
     return [X, ind]
 
 
-def predict_for_mice(x):
-    model = pickle.load(open('../../data/rotation_forest_mice.pkl', 'rb'))
-    y_test_predict = model.predict(x)
-    return y_test_predict
-
-
-def predict_for_human(x):
-    model = pickle.load(open('../../data/rotation_forest_human.pkl', 'rb'))
+def predict(x, species):
+    model = pickle.load(open('../../data/rotation_forest_{}.pkl'.format(species), 'rb'))
     y_test_predict = model.predict(x)
     return y_test_predict
 
@@ -33,10 +27,7 @@ def get_result(pssm, spd3, species):
             protein += val.split()[1]
 
     [X, ind] = get_bigrams_utility(protein, pssm, spd3)
-    if species == 'human':
-        Y = predict_for_human(X)
-    else:
-        Y = predict_for_mice(X)
+    Y = predict(X, species)
     res = ''
     ind = 0
     for p in protein:
