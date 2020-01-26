@@ -15,7 +15,7 @@ def get_bigrams_utility(protein, pssm, spd3):
 
 
 def predict(x, species):
-    model = pickle.load(open('../../data/rotation_forest_{}.pkl'.format(species), 'rb'))
+    model = pickle.load(open('../../model/rotation_forest_{}.pkl'.format(species), 'rb'))
     y_test_predict = model.predict(x)
     return y_test_predict
 
