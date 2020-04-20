@@ -70,7 +70,11 @@ find * -type f | wc -l
 for file in ./*; do
       if [ "${file: -5}" "==" ".hsb2" ]
         then
-         echo $file
-         mv "${file}" ../HSA/
+         echo "${file:0:-5}"
+         mv "${file:0:-5}.spd3" ./spd3/
+         mv "${file:0:-5}.pssm" ./pssm/
+         mv "${file:0:-5}.hsa2" ./hsa2/
+         mv "${file:0:-5}.hsb2" ./hsb2/
+         mv "${file:0:-5}" ./seq/
       fi
 done;
