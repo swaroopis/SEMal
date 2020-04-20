@@ -124,6 +124,23 @@ def load_model(x_train, y_train, x_test, y_test, folds):
     i_want_roc(model, x_test, y_test)
 
 
+def kmal_sp(x_test, y_test):
+    model = pickle.load(open('../data/rotation_forest_human.pkl', 'rb'))
+
+    y_test_predict = model.predict(x_test)
+    res = "\n******************** Independent Test Score ********************\n"
+    res += "Accuracy: {}\n".format(accuracy_score(y_test, y_test_predict))
+    res += "MCC: {}\n".format(matthews_corrcoef(y_test, y_test_predict))
+    res += "Precision: {}\n".format(precision_score(y_test, y_test_predict))
+    res += "Roc AUC score: {}\n".format(roc_auc_score(y_test, y_test_predict))
+    res += "AUC score: {}\n".format(auc(y_test, y_test_predict))
+    res += "F1 score: {}\n".format(f1_score(y_test, y_test_predict))
+    res += "Sensitivity: {}\n".format(sensitivity(y_test, y_test_predict))
+    res += "Specifity: {}\n\n\n".format(specificity(y_test, y_test_predict))
+    print(res)
+    i_want_roc(model, x_test, y_test)
+
+
 def i_want_roc(model, x_test, y_test):
     from sklearn.metrics import roc_curve
     probs = model.predict_proba(x_test)
@@ -144,11 +161,14 @@ def plot_roc_curve(fper, tper):
 
 
 if __name__ == '__main__':
-    npzfile = np.load('../data/knn_features_human.npz', allow_pickle=True)
+    npzfile = np.load('../data/features_human.npz', allow_pickle=True)
     X_p = npzfile['arr_0']
     Y_p = npzfile['arr_1']
     X_n = npzfile['arr_2']
     Y_n = npzfile['arr_3']
+
+    kmal_sp(X_p, Y_p)
+    exit(1)
 
     print(X_p.shape, X_n.shape)
 
