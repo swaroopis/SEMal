@@ -5,7 +5,7 @@ from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import accuracy_score, matthews_corrcoef, precision_score, roc_auc_score
 from error_measurement import matthews_correlation, sensitivity, specificity, auc, f1_score
 import pickle
-
+import tensorflow as tf
 
 def robust_cross_val(x_train, y_train, x_test, y_test, folds):
     skf = StratifiedKFold(n_splits=folds, random_state=47)
@@ -128,6 +128,11 @@ def kmal_sp(x_test, y_test):
     model = pickle.load(open('../data/rotation_forest_human.pkl', 'rb'))
 
     y_test_predict = model.predict(x_test)
+
+    with tf.Session() as sess:
+        sen = sess.run(sensitivity(y_test, y_test_predict))
+        spe = sess.run(specificity(y_test, y_test_predict))
+
     res = "\n******************** Independent Test Score ********************\n"
     res += "Accuracy: {}\n".format(accuracy_score(y_test, y_test_predict))
     res += "MCC: {}\n".format(matthews_corrcoef(y_test, y_test_predict))
@@ -135,10 +140,10 @@ def kmal_sp(x_test, y_test):
     res += "Roc AUC score: {}\n".format(roc_auc_score(y_test, y_test_predict))
     res += "AUC score: {}\n".format(auc(y_test, y_test_predict))
     res += "F1 score: {}\n".format(f1_score(y_test, y_test_predict))
-    res += "Sensitivity: {}\n".format(sensitivity(y_test, y_test_predict))
-    res += "Specifity: {}\n\n\n".format(specificity(y_test, y_test_predict))
+    res += "Sensitivity: {}\n".format(sen)
+    res += "Specifity: {}\n\n\n".format(spe)
     print(res)
-    i_want_roc(model, x_test, y_test)
+    # i_want_roc(model, x_test, y_test)
 
 
 def i_want_roc(model, x_test, y_test):
