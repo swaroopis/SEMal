@@ -1,6 +1,9 @@
 # EvolMal
 Predict Malonylation Sites from a protein sequence using both structural and evolutionary information
 
+## Flowchart
+![Flowchart](./flowchart.png)
+
 ## STEPS:  
     1. elm to .csv convert:
         Run "1_elm_to_csv" with proper function parameters (input is the .elm file downloaded from "http://plmd.biocuckoo.org/download.php"
