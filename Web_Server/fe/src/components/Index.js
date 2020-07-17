@@ -131,15 +131,15 @@ export default class Index extends Component {
                 <div style={{ textAlign: 'left', width: '100%', marginTop: '20px' }}>
                   <h4>Comments:</h4>
                   <ul>
-                    <li>There is no limitation of input as long as its a protein sequence of any length</li>
-                    <li>The server doesn't use any external tools or plugins. Hence, it is supported by all browsers in all platforms.</li>
+                    <li>Input protein can be of any length.</li>
+                    <li>The server does not use any external tools or plugins. Hence, it is supported by all browsers in all platforms.</li>
                   </ul>
                 </div>
                 <br />
                 <div style={{ textAlign: 'left', width: '100%', marginTop: '20px' }}>
                   <h4>References:</h4>
                   <ul>
-                    <li>Computers in Biology and Medicine (In Review)</li>
+                    <li>S. R. Dipta, G. Taherzadeh, Md. W. Ahmad, Md. E. Arafat, S. Shatabda, A. Dehzangi. "SEMal: Accurate Protein Malonylation Site Predictor Using Structural and Evolutionary Information" - <i>Submitted to Computers in Biology and Medicine</i></li>
                   </ul>
                 </div>
               </div>
