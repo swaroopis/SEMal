@@ -8,7 +8,7 @@ const PublicationsModal = ({
   <Modal isOpen={open} toggle={() => toggle('publicationsModal')}>
     <ModalHeader toggle={() => toggle('publicationsModal')}>Publications</ModalHeader>
     <ModalBody>
-      Scientific Reports (Submitted)
+    Computers in Biology and Medicine (In Review)
     </ModalBody>
     <ModalFooter>
       <Button color="secondary" onClick={() => toggle('publicationsModal')}>Close</Button>
