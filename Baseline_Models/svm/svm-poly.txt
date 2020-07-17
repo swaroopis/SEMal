@@ -1,0 +1,153 @@
+Mice
+10 folds
+******************** Cross Validation Score ********************
+Accuracy: 0.8709935897435898
+MCC: 0.7430114054004543
+Precision: 0.8853295415360775
+Roc AUC score: 0.8709129343099831
+AUC score: 0.55
+F1 score: 0.8679731262027606
+Sensitivity: 0.8519924879074097
+Specifity: 0.8898333311080933
+
+******************** Independent Test Score ********************
+Accuracy: 0.8589928057553957
+MCC: 0.7186868280813264
+Precision: 0.8757575757575757
+Roc AUC score: 0.8588908027891415
+AUC score: 0.5
+F1 score: 0.8550295857988166
+Sensitivity: 0.8352600932121277
+Specifity: 0.8825215101242065
+
+
+Human
+10 folds
+******************** Cross Validation Score ********************
+Accuracy: 0.9203703703703703
+MCC: 0.8411526791664825
+Precision: 0.9286638911096808
+Roc AUC score: 0.920316352156553
+AUC score: 0.55
+F1 score: 0.9191570004853202
+Sensitivity: 0.9101508259773254
+Specifity: 0.9304819107055664
+
+******************** Independent Test Score ********************
+Accuracy: 0.9381688466111772
+MCC: 0.8763439343371481
+Precision: 0.9400479616306955
+Roc AUC score: 0.9381595765137033
+AUC score: 0.5
+F1 score: 0.937799043062201
+Sensitivity: 0.9355608820915222
+Specifity: 0.9407582879066467
+
+
+
+
+Human PSSM
+10 folds
+******************** Cross Validation Score ********************
+Accuracy: 0.9161375661375661
+MCC: 0.8326306368624582
+Precision: 0.9212810065295759
+Roc AUC score: 0.9160960106268359
+AUC score: 0.55
+F1 score: 0.9150997774287644
+Sensitivity: 0.909345269203186
+Specifity: 0.922846794128418
+
+******************** Independent Test Score ********************
+Accuracy: 0.915576694411415
+MCC: 0.8314514835493939
+Precision: 0.9046511627906977
+Roc AUC score: 0.9156222782748363
+AUC score: 0.5
+F1 score: 0.9163722025912837
+Sensitivity: 0.9284009337425232
+Specifity: 0.9028435945510864
+
+
+
+
+
+
+Mice PSSM
+10 folds
+******************** Cross Validation Score ********************
+Accuracy: 0.8612179487179488
+MCC: 0.723207494864693
+Precision: 0.8747218926568852
+Roc AUC score: 0.8611375780900836
+AUC score: 0.6
+F1 score: 0.8580084718264889
+Sensitivity: 0.8423327207565308
+Specifity: 0.8799424171447754
+
+******************** Independent Test Score ********************
+Accuracy: 0.8517985611510791
+MCC: 0.7056268091525643
+Precision: 0.8808777429467085
+Roc AUC score: 0.851628103416864
+AUC score: 0.5
+F1 score: 0.8451127819548873
+Sensitivity: 0.8121387362480164
+Specifity: 0.8911174535751343
+
+
+
+Mice SPD3
+10 folds
+******************** Cross Validation Score ********************
+Accuracy: 0.750801282051282
+MCC: 0.5072160695899346
+Precision: 0.719770701773995
+Roc AUC score: 0.7510525844695406
+AUC score: 0.55
+F1 score: 0.7661179270511047
+Sensitivity: 0.8194979429244995
+Specifity: 0.6826071739196777
+
+******************** Independent Test Score ********************
+Accuracy: 0.7438848920863309
+MCC: 0.4897783426795345
+Precision: 0.723404255319149
+Roc AUC score: 0.7440664491445418
+AUC score: 0.5
+F1 score: 0.7534626038781165
+Sensitivity: 0.7861271500587463
+Specifity: 0.7020057439804077
+
+
+
+
+
+
+Human SPD3
+10 folds
+******************** Cross Validation Score ********************
+Accuracy: 0.8355820105820106
+MCC: 0.6729783155980439
+Precision: 0.8134156929368149
+Roc AUC score: 0.8357363205977524
+AUC score: 0.45
+F1 score: 0.8403129946797133
+Sensitivity: 0.8692194819450378
+Specifity: 0.8022531270980835
+
+******************** Independent Test Score ********************
+Accuracy: 0.835909631391201
+MCC: 0.6736142640078389
+Precision: 0.8129175946547884
+Roc AUC score: 0.8360347928378331
+AUC score: 0.5
+F1 score: 0.8410138248847926
+Sensitivity: 0.8711217045783997
+Specifity: 0.8009478449821472
+
+
+
+
+
+
