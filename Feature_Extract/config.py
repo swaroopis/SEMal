@@ -4,6 +4,7 @@ human = {
     "encoded_file": '../data/Malonylation/Human/HM_encoded.csv',
     "data_folder": '../data/Malonylation/Human/HSA+SPD3/',
     "output": 'features_human',
+    "output_lemp_compare": '../data/features_human_lemp_compare.npz',
 }
 
 mice = {

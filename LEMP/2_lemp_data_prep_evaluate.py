@@ -2,8 +2,8 @@ import numpy as np
 from os import listdir
 from os.path import isfile, join
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score, matthews_corrcoef, precision_score, roc_auc_score
-from error_measurement import matthews_correlation, sensitivity, specificity, auc, f1_score
+from sklearn.metrics import accuracy_score, matthews_corrcoef, precision_score, roc_auc_score, confusion_matrix, classification_report
+from error_measurement import matthews_correlation, sensitivity, specificity, f1_score, precision_m
 import tensorflow as tf
 import sys
 from config import human, mice
@@ -74,6 +74,7 @@ def original_result_read(encoded):
 
 y_test = []
 y_test_predict = []
+TP, TN, FP, FN = 0, 0, 0, 0
 
 
 def lemp_result_read():
@@ -93,10 +94,22 @@ def lemp_result_read():
                     row.append(o1 + " " + o2 + " " + o3)
                 protein_id = row[0]
                 lysine_ind = int(row[1]) - 1
-                pred = row[-1].startswith('Yes')
+                pred = 1 if row[-1].startswith('Yes') else 0
                 # print(row, protein_id, lysine_ind, pred)
                 y_test.append(result[protein_id][lysine_ind])
                 y_test_predict.append(pred)
+
+                global TP, TN, FP, FN
+                if result[protein_id][lysine_ind] == pred:
+                    if pred == 1:
+                        TP += 1
+                    else:
+                        TN += 1
+                else:
+                    if result[protein_id][lysine_ind] and pred == 0:
+                        FN += 1
+                    else:
+                        FP += 1
 
 
 def evaluate():
@@ -108,13 +121,15 @@ def evaluate():
     res = "\n******************** Independent Test Score ********************\n"
     res += "Accuracy: {}\n".format(accuracy_score(y_test, y_test_predict))
     res += "MCC: {}\n".format(matthews_corrcoef(y_test, y_test_predict))
-    res += "Precision: {}\n".format(precision_score(y_test, y_test_predict))
+    res += "Precision: {}\n".format(precision_score(y_test, y_test_predict, pos_label=1))
     res += "Roc AUC score: {}\n".format(roc_auc_score(y_test, y_test_predict))
     # res += "AUC score: {}\n".format(auc(y_test, y_test_predict))
     res += "F1 score: {}\n".format(f1_score(y_test, y_test_predict))
     res += "Sensitivity: {}\n".format(sen)
     res += "Specifity: {}\n\n\n".format(spe)
     print(res)
+
+    print(f"TP: {TP}, TN: {TN}, FP: {FP}, FN: {FN}")
 
 
 def data_prep_for_lemp_server():

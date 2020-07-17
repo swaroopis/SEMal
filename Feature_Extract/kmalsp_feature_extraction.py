@@ -99,23 +99,18 @@ def get_structural_info(protein, protein_sz, ind, flatten=False):
 def get_bigrams(protein, seq, site_str, m_or_not):
     X = []
     Y = []
-    ind = 0
+    ind = 12
 
-    while ind < len(seq):
-        ind = seq.find(site_str, ind)
-        if ind == -1:
-            break
+    PSSM = get_PSSM(protein, len(seq), ind)
+    PSSM_bigram = get_profile_bigram(PSSM, True)  # 20 x 20
+    SPpre = get_structural_info(protein, len(seq), ind, True) # 7 x 8
+    ind += 1
 
-        PSSM = get_PSSM(protein, len(seq), ind)
-        PSSM_bigram = get_profile_bigram(PSSM, True)  # 20 x 20
-        SPpre = get_structural_info(protein, len(seq), ind, True) # 7 x 8
-        ind += 1
+    combined = np.concatenate((PSSM_bigram, SPpre))
 
-        combined = np.concatenate((PSSM_bigram, SPpre))
-
-        # print(combined.shape)
-        X.append(combined)
-        Y.append(int(m_or_not))
+    # print(combined.shape)
+    X.append(combined)
+    Y.append(int(m_or_not))
 
     return [X, Y]
 
@@ -132,16 +127,18 @@ def main(data_folder, ext, output):
     X_n = []
     Y_n = []
     for protein in tqdm(proteins):
-        # For all Positive Sites
-        [a, b] = get_bigrams(protein, data[protein], 'K', 1)
-        X_p += a
-        Y_p += b
-        # print(X_p, Y_p)
-
-        # # For all Negative Sites
-        # [c, d] = get_bigrams(protein, mathematical_seq, '0')
-        # X_n += c
-        # Y_n += d
+        if protein[-1] == 'p':
+            # For all Positive Sites
+            [a, b] = get_bigrams(protein, data[protein], 'K', 1)
+            X_p += a
+            Y_p += b
+            # print(X_p, Y_p)
+        else:
+            # # For all Negative Sites
+            [c, d] = get_bigrams(protein, data[protein], 'K', 0)
+            X_n += c
+            Y_n += d
+            # print(X_n, Y_n)
 
     np.savez('{}'.format(output), X_p, Y_p, X_n, Y_n)
 
